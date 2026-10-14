@@ -31,5 +31,6 @@ export const projects = [
       'A two-sided wedding marketplace for the Muslim/nikah market in Southeast Asia, where couples find vendors and send booking requests.',
     stack: ['Flutter', 'Rails API', 'Supabase'],
     status: 'In progress',
+    url: 'https://neekah.app/',
   },
 ];

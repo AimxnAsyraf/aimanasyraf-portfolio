@@ -13,7 +13,7 @@ currently interning at ams OSRAM in SAP Authorization.
 
 | Project | What it is | Stack |
 |---|---|---|
-| **Neekah** | A two-sided wedding marketplace for the Muslim/nikah market in Southeast Asia, where couples find vendors and send booking requests | Flutter, Rails API, Supabase |
+| [**Neekah**](https://neekah.app/) | A two-sided wedding marketplace for the Muslim/nikah market in Southeast Asia, where couples find vendors and send booking requests | Flutter, Rails API, Supabase |
 
 ## Tech stack
 
