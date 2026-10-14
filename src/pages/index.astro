@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import { profile, experience, projects } from '../data';
+---
+
+<Base title={profile.name} description={profile.summary}>
+  <header class="site-header">
+    <a href="/" class="brand">{profile.name}</a>
+    <nav aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">{profile.headline}</p>
+      <h1>Hi, I'm {profile.name}.</h1>
+      <p class="lead">{profile.summary}</p>
+      <div class="actions">
+        <a class="button primary" href={`mailto:${profile.email}`}>Get in touch</a>
+        <a class="button" href={profile.linkedin} rel="noopener" target="_blank">LinkedIn</a>
+      </div>
+    </section>
+
+    <Section id="projects" title="Projects">
+      <ul class="cards">
+        {projects.map((p) => (
+          <li class="card">
+            <div class="card-head">
+              <h3>{p.name}</h3>
+              {p.status && <span class="badge">{p.status}</span>}
+            </div>
+            <p>{p.description}</p>
+            <ul class="tags">
+              {p.stack.map((s) => <li>{s}</li>)}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </Section>
+
+    <Section id="experience" title="Experience">
+      <ul class="timeline">
+        {experience.map((e) => (
+          <li>
+            <div>
+              <h3>{e.role}</h3>
+              <p class="org">{e.org}</p>
+            </div>
+            <span class="period">{e.period}</span>
+          </li>
+        ))}
+      </ul>
+    </Section>
+
+    <Section id="contact" title="Contact">
+      <p>The best way to reach me is by email or LinkedIn.</p>
+      <ul class="links">
+        <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
+        <li><a href={profile.linkedin} rel="noopener" target="_blank">LinkedIn</a></li>
+        <li><a href={profile.github} rel="noopener" target="_blank">GitHub</a></li>
+      </ul>
+    </Section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© {new Date().getFullYear()} {profile.fullName}</p>
+  </footer>
+</Base>
