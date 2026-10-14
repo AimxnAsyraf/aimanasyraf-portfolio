@@ -15,7 +15,7 @@ export const experience = [
   {
     role: 'SAP Authorization Intern',
     org: 'ams OSRAM',
-    period: 'Present',
+    period: 'May 2026 – Dec 2026',
   },
   {
     role: 'Student',
