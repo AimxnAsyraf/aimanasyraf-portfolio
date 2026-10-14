@@ -2,41 +2,58 @@
 
 The source for my personal portfolio website: who I am, what I've built, and how to reach me.
 
-> **Status:** early setup. The site hasn't been built yet.
+> **Status:** early setup. The Astro site hasn't been scaffolded yet.
 
 ## About
 
-I'm Aiman Asyraf, a developer based in Malaysia. <!-- TODO: one or two lines on your role and focus -->
+I'm Aiman Asyraf, a third-year student at Universiti Teknologi PETRONAS (UTP),
+currently interning at ams OSRAM in SAP Authorization.
 
 ## Projects
 
 | Project | What it is | Stack |
 |---|---|---|
 | **Neekah** | A two-sided wedding marketplace for the Muslim/nikah market in Southeast Asia, where couples find vendors and send booking requests | Flutter, Rails API, Supabase |
-| <!-- TODO --> | | |
 
 ## Tech stack
 
-<!-- TODO: fill in once the framework is chosen (e.g. plain HTML/CSS, Astro, Next.js) -->
+- [Astro](https://astro.build): static site framework
+- [Cloudflare Pages](https://pages.cloudflare.com): hosting
 
 ## Running locally
 
-<!-- TODO: add setup and dev-server commands once the site is scaffolded -->
+Requires Node.js and npm.
 
 ```bash
 git clone https://github.com/AimxnAsyraf/aimanasyraf-portfolio.git
 cd aimanasyraf-portfolio
+npm install
+npm run dev       # start the dev server with live reload
 ```
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Start the local dev server |
+| `npm run build` | Build the static site into `dist/` |
+| `npm run preview` | Serve the built `dist/` locally (run `build` first) |
 
 ## Deployment
 
-<!-- TODO: hosting provider and live URL. This repo is private, so GitHub Pages
-     needs a paid plan. Netlify, Vercel or Cloudflare Pages work on the free tier. -->
+Hosted on Cloudflare Pages, connected to this repo. Pushes to `main` deploy automatically.
+
+| Setting | Value |
+|---|---|
+| Framework preset | Astro |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+
+**Live URL:** coming soon, on a custom domain.
 
 ## Contact
 
+- Email: [aimanasyraf115@gmail.com](mailto:aimanasyraf115@gmail.com)
+- LinkedIn: [Aiman Asyraf Zulkefli](https://www.linkedin.com/in/aiman-asyraf-zulkefli-a698772b4/)
 - GitHub: [@AimxnAsyraf](https://github.com/AimxnAsyraf)
-- <!-- TODO: email / LinkedIn -->
 
 ## License
 
