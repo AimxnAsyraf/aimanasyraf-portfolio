@@ -18,7 +18,7 @@ currently interning at ams OSRAM in SAP Authorization.
 ## Tech stack
 
 - [Astro](https://astro.build): static site framework
-- [Cloudflare Workers](https://workers.cloudflare.com): hosting (static assets)
+- [Cloudflare Pages](https://pages.cloudflare.com): hosting
 
 ## Running locally
 
@@ -36,7 +36,7 @@ npm run dev       # start the dev server with live reload
 | `npm run dev` | Start the local dev server |
 | `npm run build` | Build the static site into `dist/` |
 | `npm run preview` | Serve the built `dist/` locally (run `build` first) |
-| `npm run deploy` | Build and deploy to Cloudflare with Wrangler |
+| `npm run deploy` | Build and deploy to Cloudflare Pages with Wrangler |
 
 ## Project structure
 
@@ -48,24 +48,25 @@ src/
   components/          # reusable pieces (Section)
   styles/global.css    # colours, light/dark theme, layout
 public/                # static files copied as-is (favicon)
-wrangler.jsonc         # Cloudflare Workers config
+wrangler.jsonc         # Cloudflare Pages config
 ```
 
 To update the content, edit `src/data.ts`. To add a project, add an entry to `projects`.
 
 ## Deployment
 
-Hosted on **Cloudflare Workers** (static assets), connected to this repo with Workers Builds.
-Pushes to `main` deploy automatically. Config lives in `wrangler.jsonc`.
+Hosted on **Cloudflare Pages**, connected to this repo. Pushes to `main` deploy automatically;
+other branches get preview deployments. Config lives in `wrangler.jsonc`.
 
-| Setting (Worker → Settings → Build) | Value |
+| Setting (Pages project → Settings → Build) | Value |
 |---|---|
+| Framework preset | Astro |
 | Build command | `npm run build` |
-| Deploy command | `npx wrangler deploy` |
+| Build output directory | `dist` |
 
 Manual deploy from your machine: `npm run deploy` (needs `npx wrangler login` first).
 
-**Live URL:** coming soon, on a custom domain.
+**Live URL:** https://aimanasyraf-portfolio.pages.dev (custom domain coming later).
 
 ## Contact
 
