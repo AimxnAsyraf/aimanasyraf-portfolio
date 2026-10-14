@@ -2,7 +2,7 @@
 
 The source for my personal portfolio website: who I am, what I've built, and how to reach me.
 
-> **Status:** early setup. The Astro site hasn't been scaffolded yet.
+> **Status:** first version: a single page with About, Projects, Experience and Contact.
 
 ## About
 
@@ -22,7 +22,7 @@ currently interning at ams OSRAM in SAP Authorization.
 
 ## Running locally
 
-Requires Node.js and npm.
+Requires Node.js 22.12 or newer (see `.nvmrc`) and npm.
 
 ```bash
 git clone https://github.com/AimxnAsyraf/aimanasyraf-portfolio.git
@@ -36,6 +36,20 @@ npm run dev       # start the dev server with live reload
 | `npm run dev` | Start the local dev server |
 | `npm run build` | Build the static site into `dist/` |
 | `npm run preview` | Serve the built `dist/` locally (run `build` first) |
+
+## Project structure
+
+```
+src/
+  data.ts              # all site content: profile, experience, projects
+  pages/index.astro    # the home page
+  layouts/Base.astro   # <html>/<head> wrapper
+  components/          # reusable pieces (Section)
+  styles/global.css    # colours, light/dark theme, layout
+public/                # static files copied as-is (favicon)
+```
+
+To update the content, edit `src/data.ts`. To add a project, add an entry to `projects`.
 
 ## Deployment
 
