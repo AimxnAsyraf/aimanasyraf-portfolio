@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { profile } from '../data';
 
 interface Props {
   title: string;
@@ -7,6 +8,15 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+
+// Tells search engines these profiles belong to the same person as this site.
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.fullName,
+  email: `mailto:${profile.email}`,
+  sameAs: [profile.linkedin, profile.github],
+};
 ---
 
 <!doctype html>
@@ -17,6 +27,9 @@ const { title, description } = Astro.props;
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="me" href={profile.linkedin} />
+    <link rel="me" href={profile.github} />
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
     <title>{title}</title>
   </head>
   <body>

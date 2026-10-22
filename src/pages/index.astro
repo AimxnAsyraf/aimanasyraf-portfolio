@@ -11,6 +11,7 @@ import { profile, experience, projects } from '../data';
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
+      <a href={profile.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
     </nav>
   </header>
 
@@ -21,7 +22,7 @@ import { profile, experience, projects } from '../data';
       <p class="lead">{profile.summary}</p>
       <div class="actions">
         <a class="button primary" href={`mailto:${profile.email}`}>Get in touch</a>
-        <a class="button" href={profile.linkedin} rel="noopener" target="_blank">LinkedIn</a>
+        <a class="button" href={profile.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
       </div>
     </section>
 
@@ -66,7 +67,7 @@ import { profile, experience, projects } from '../data';
       <p>The best way to reach me is by email or LinkedIn.</p>
       <ul class="links">
         <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
-        <li><a href={profile.linkedin} rel="noopener" target="_blank">LinkedIn</a></li>
+        <li><a href={profile.linkedin} rel="me noopener" target="_blank">LinkedIn</a></li>
         <li><a href={profile.github} rel="noopener" target="_blank">GitHub</a></li>
       </ul>
     </Section>
