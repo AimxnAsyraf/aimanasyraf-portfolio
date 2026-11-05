@@ -4,6 +4,7 @@ export const profile = {
   name: 'Aiman Asyraf',
   fullName: 'Aiman Asyraf Zulkefli',
   headline: 'Student developer & SAP Authorization intern',
+  status: 'Currently interning at ams OSRAM',
   summary:
     'Third-year student at Universiti Teknologi PETRONAS, currently interning at ams OSRAM in SAP Authorization.',
   email: 'aimanasyraf115@gmail.com',
