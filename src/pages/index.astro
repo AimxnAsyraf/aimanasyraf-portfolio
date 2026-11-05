@@ -1,55 +1,103 @@
 ---
 import Base from '../layouts/Base.astro';
 import Section from '../components/Section.astro';
+import Icon from '../components/Icon.astro';
 import { profile, experience, projects } from '../data';
 ---
 
 <Base title={profile.name} description={profile.summary}>
   <header class="site-header">
-    <a href="/" class="brand">{profile.name}</a>
-    <nav aria-label="Sections">
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-      <a href={profile.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
-    </nav>
+    <div class="bar">
+      <a href="/" class="brand">{profile.name}<span>.</span></a>
+      <nav aria-label="Sections">
+        <a class="nav-link optional" href="#projects">Projects</a>
+        <a class="nav-link optional" href="#experience">Experience</a>
+        <a
+          class="icon-button"
+          href={profile.linkedin}
+          rel="me noopener"
+          target="_blank"
+          aria-label="LinkedIn profile"
+        >
+          <Icon name="linkedin" />
+        </a>
+        <a class="button primary small" href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <main>
     <section class="hero">
-      <p class="eyebrow">{profile.headline}</p>
-      <h1>Hi, I'm {profile.name}.</h1>
-      <p class="lead">{profile.summary}</p>
-      <div class="actions">
-        <a class="button primary" href={`mailto:${profile.email}`}>Get in touch</a>
-        <a class="button" href={profile.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="blob one" aria-hidden="true"></div>
+      <div class="blob two" aria-hidden="true"></div>
+
+      <p class="status reveal"><span class="dot" aria-hidden="true"></span>{profile.status}</p>
+      <h1 class="reveal">
+        Hi, I'm <span class="gradient-text">{profile.name}</span>.
+      </h1>
+      <p class="lead reveal">
+        <strong>{profile.headline}.</strong> {profile.summary}
+      </p>
+      <div class="actions reveal">
+        <a class="button primary" href={`mailto:${profile.email}`}>
+          <Icon name="mail" /> Get in touch
+        </a>
+        <a class="button" href="#projects">
+          See my work <Icon name="arrow-right" />
+        </a>
+        <a
+          class="icon-button"
+          href={profile.linkedin}
+          rel="me noopener"
+          target="_blank"
+          aria-label="LinkedIn profile"
+        >
+          <Icon name="linkedin" />
+        </a>
+        <a
+          class="icon-button"
+          href={profile.github}
+          rel="me noopener"
+          target="_blank"
+          aria-label="GitHub profile"
+        >
+          <Icon name="github" />
+        </a>
       </div>
     </section>
 
-    <Section id="projects" title="Projects">
+    <Section id="projects" kicker="Selected work" title="Projects">
       <ul class="cards">
         {projects.map((p) => (
-          <li class="card">
+          <li class:list={['card', { linked: p.url }]}>
             <div class="card-head">
               <h3>
                 {p.url ? (
-                  <a href={p.url} rel="noopener" target="_blank">{p.name} ↗</a>
+                  <a href={p.url} rel="noopener" target="_blank">{p.name}</a>
                 ) : (
                   p.name
                 )}
               </h3>
-              {p.status && <span class="badge">{p.status}</span>}
+              {p.url && (
+                <span class="card-arrow" aria-hidden="true">
+                  <Icon name="arrow-up-right" />
+                </span>
+              )}
             </div>
             <p>{p.description}</p>
-            <ul class="tags">
-              {p.stack.map((s) => <li>{s}</li>)}
-            </ul>
+            <div class="card-foot">
+              <ul class="tags" aria-label="Tech stack">
+                {p.stack.map((s) => <li>{s}</li>)}
+              </ul>
+              {p.status && <span class="badge">{p.status}</span>}
+            </div>
           </li>
         ))}
       </ul>
     </Section>
 
-    <Section id="experience" title="Experience">
+    <Section id="experience" kicker="Background" title="Experience">
       <ul class="timeline">
         {experience.map((e) => (
           <li>
@@ -63,17 +111,27 @@ import { profile, experience, projects } from '../data';
       </ul>
     </Section>
 
-    <Section id="contact" title="Contact">
-      <p>The best way to reach me is by email or LinkedIn.</p>
-      <ul class="links">
-        <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
-        <li><a href={profile.linkedin} rel="me noopener" target="_blank">LinkedIn</a></li>
-        <li><a href={profile.github} rel="noopener" target="_blank">GitHub</a></li>
-      </ul>
-    </Section>
+    <section id="contact" class="reveal" aria-labelledby="contact-title">
+      <div class="cta">
+        <h2 id="contact-title">Let's build something together.</h2>
+        <p>Open to internships, projects and a good chat. Email or LinkedIn is the fastest way to reach me.</p>
+        <div class="actions">
+          <a class="button primary" href={`mailto:${profile.email}`}>
+            <Icon name="mail" /> {profile.email}
+          </a>
+          <a class="button" href={profile.linkedin} rel="me noopener" target="_blank">
+            <Icon name="linkedin" /> LinkedIn
+          </a>
+          <a class="button" href={profile.github} rel="me noopener" target="_blank">
+            <Icon name="github" /> GitHub
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <p>© {new Date().getFullYear()} {profile.fullName}</p>
+    <p>Built with Astro, hosted on Cloudflare Pages.</p>
   </footer>
 </Base>

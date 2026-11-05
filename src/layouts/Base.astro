@@ -26,13 +26,47 @@ const person = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@500;600;700&display=swap"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="me" href={profile.linkedin} />
     <link rel="me" href={profile.github} />
     <script type="application/ld+json" set:html={JSON.stringify(person)} />
+    <script is:inline>
+      // Set before first paint so revealed content doesn't flash in and then hide.
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+        document.documentElement.classList.add('js');
+      }
+    </script>
     <title>{title}</title>
   </head>
   <body>
     <slot />
+    <script>
+      // Fade sections in as they scroll into view. Without JS (or with reduced motion) everything just shows.
+      if (document.documentElement.classList.contains('js')) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('in');
+                observer.unobserve(entry.target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -10% 0px' },
+        );
+        document.querySelectorAll('.reveal').forEach((el, i) => {
+          (el as HTMLElement).style.transitionDelay = el.closest('.hero') ? `${i * 90}ms` : '';
+          observer.observe(el);
+        });
+      }
+    </script>
   </body>
 </html>
